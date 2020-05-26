@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>                    </h1>
+        <div class="content-section">
+            <h4>Enter your schedule to the list:</h4>
+            <form action="/add" method="POST" >
+                <div class="form-row align-items-center">
+                    <input type="text" name="todoitem" placeholder="add to list" class="form-control">
+                    
+                    <input type="submit" value="add item" class="btn btn-dark btn-sm">    
+                </div>
+                
+            </form>
+        </div>
+   
+
+    
+        <div class="card border-light mb-3">
+            <p>                     </p>
+            <div class="card-header"><h3><b>Your List:</b></h3></div>
+            <ol>
+                {% for todo in todos %}
+                    <li>
+                        {% if todo.complete %}
+                            <strike>{% endif %}{{todo.content}} | Date & time of post :( {{todo.date_posted}} )
+                            {% if todo.complete %}</strike>{% endif %}
+                            <p>                                     </p>
+                        <a href="/complete/{{todo.id}}" class="btn btn-dark btn-sm" role="button">Complete</a>
+                        <a href="/delete/{{todo.id}}" class="btn btn-dark btn-sm" role="button">Delete</a>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    
+    
+{% endblock content %}
